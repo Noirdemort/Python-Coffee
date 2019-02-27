@@ -1,0 +1,72 @@
+<html>
+<head>
+<style type="text/css">
+h1 {background-color:#808080;
+    font-weight:bold;
+    padding:35px;
+    color:white;
+    font-family: Comic Sans MS;}
+    .button {background-color: #808080; color:white;
+      border-radius: 2px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      padding: 14px 40px;
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    }
+    .button:hover {
+      background-color: #000000;
+      color: white;
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  #xyz{
+    position: absolute;
+    top:60px;
+    left:1200px;
+  }
+</style>
+</head>
+<body>
+  <h1>Find me Coffee</h1>
+  <div id="xyz"><form action="/return_main_user" method="post">
+      <input type="text" name="username" style="display:none;" value={{ by }} />
+      <input type="submit" value="Go back" />
+  </form></div>
+
+  <div id="a"><h3>Welcome to shop!!</h3>
+  <h4>Tell us what you want</h4>
+      <form action="/place_order" method="post">
+      <div id="foodhack">
+
+        <select name="items">
+                {% for item in foods %}
+                    <option value="{{ item[0] }}">{{ item[0] }} - {{ item[1] }}/- </option>
+                {% endfor %}
+        </select>
+    <input type="text" name="quantity" placeholder="quantity" required="required" value="1"/>
+      </div>
+          <input type="text" name="shop_id" style="display:none;" value={{ at }}  >
+          <input type="text" name="username" style="display:none;" value={{ by }}   >
+          <input type="submit" class="button" value="Place Order" />
+      </form>
+    <br /><button class="button" onclick="addMore()">Add item</button>
+    <br /><br />
+
+    <div id="cart">Items in your cart: quantity</div><br />
+    <br/>
+
+</div>
+</body>
+<script>
+        var count=1;
+        function addMore() {
+            document.getElementById('foodhack').innerHTML += `<br>  <select name="items">
+            {% for item in foods %}
+          <option value="{{ item[0] }}">{{ item[0] }} - {{ item[1] }}/-</option>
+                {% endfor %}
+        </select>
+    <input type="text" name="quantity" placeholder="quantity" required="required" value="1"/>`
+            count +=1
+            document.getElementById('cart').innerHTML = `Items in your cart: ${count}`
+        }
+</script>
+</html>

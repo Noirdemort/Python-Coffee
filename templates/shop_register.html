@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<style type="text/css">
+		h1 {background-color:#808080;
+			font-weight:bold;
+			padding:25px;
+			color:white;}
+		#align{
+			text-align:center;
+		}
+		#a{ text-align:center;}
+		#xyz{ text-align:center;size:20}
+		#b{text-indent:20px;}
+		#c{text-indent:-20em;}
+		.button {background-color: #808080; color:white;
+			border-radius: 2px;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+			padding: 14px 40px;
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+		}
+		.button:hover {
+			background-color: #000000;
+			color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	}
+</style>
+<script type="text/javascript">
+    function sign_up(){
+        /*
+            check for unique username here
+        */
+
+        var name = document.sign_up_form.name.value;
+        if(name.length < 3){
+            alert("Name should be atleast 3 characters.");
+            document.sign_up_form.name.focus();
+            return false;
+        }
+        var email = document.sign_up_form.email.value;
+        var re_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w_)*(\.\w{2,5})+$/;
+        if(re_email.test(email) == false){
+            alert("Email is not valid.");
+            document.sign_up_form.email.focus();
+            return false;
+        }
+
+        /*
+            check if an account with same email already exists
+        */
+
+        /*
+            password validation
+        */
+    }
+
+</script>
+</head>
+
+<body>
+<h1>Coffee you like</h1>
+<br />
+<br />
+<div id="xyz">Sign up for shop</div><br />
+<form action="/shop_signup" method="POST" name="sign_up_form">
+		<div id="align">
+        <input type="text" name="id" placeholder="Set an ID" required="required"/><br />
+        <input type="text" name="sname" placeholder="Enter the shop name" required="required"/><br />
+        <input type="password" name="spass" placeholder="Enter password" required="required"/><br />
+		<input type="text" name="email" placeholder="Email address" required="required"/><br />
+		<input type="text" name="opentime" placeholder="Open Time" required="required"/><br />
+		<input type="text" name="closetime" placeholder="Close time" required="required"/><br />
+		<div id="c">Location:</div>
+		<input type="text" name="lattitude" placeholder="Lattitude" required="required"/><br />
+		<input type="text" name="longitude" placeholder="Longitude" required="required"/><br />
+		<br />
+		<input type="text" name="address" placeholder="Enter the address" required="required"/><br />
+		<br /><br /><input type="submit" value="Register"/></div>
+</form>
+<br />
+<div id="a"><form action="index.html"><button>Go back</button></form></div>
+</body>
+</html>

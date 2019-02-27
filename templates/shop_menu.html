@@ -1,0 +1,98 @@
+<html>
+
+<head>
+<style type="text/css">
+		h1 {background-color:#808080;
+			font-weight:bold;
+			padding:35px;
+			color:white;}
+			.button {background-color: #808080; color:white;
+				border-radius: 2px;
+				box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				padding: 14px 40px;
+				-webkit-transition-duration: 0.4s;
+				transition-duration: 0.4s;
+			}
+			.button:hover {
+				background-color: #000000;
+				color: white;
+				box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		#c {
+			position: absolute;
+			top: 55px;
+			left: 1200px;
+		}
+</style>
+</head>
+
+<body>
+<h1>Coffee Shop</h1>
+<h3>Give us details about your business.</h3>
+<div id="c">
+    <form action="/shoplogin.html" method="post">
+        <input type="submit" value="Go Back"/>
+    </form>
+</div>
+
+<h4>Select the item in your menu from the list below.</h4> <br /><br />
+{#Sandwiches<input type="checkbox" name="menuitem"><br />#}
+{#Burgers<input type="checkbox" name="menuitem"><br />#}
+{#Breads<input type="checkbox" name="menuitem"><br />#}
+{#Salads<input type="checkbox" name="menuitem"><br />#}
+{#Soups<input type="checkbox" name="menuitem"><br />#}
+{#Pizzas<input type="checkbox" name="menuitem"><br />#}
+{#Pastas<input type="checkbox" name="menuitem"><br />#}
+{#Fruits<input type="checkbox" name="menuitem"><br />#}
+{#Muffins<input type="checkbox" name="menuitem"><br /><br />#}
+{#<h4>Now Select the available coffees in your shop.</h4><br />#}
+{#Drip<input type="checkbox" name="menuitem"><br />#}
+{#Americano<input type="checkbox" name="menuitem"><br />#}
+{#Chai latte<input type="checkbox" name="menuitem"><br />#}
+{#Latte<input type="checkbox" name="menuitem"><br />#}
+{#Cappuccino<input type="checkbox" name="menuitem"><br />#}
+{#Mocha<input type="checkbox" name="menuitem"><br />#}
+{#Expresso<input type="checkbox" name="menuitem"><br />#}
+{#Tea<input type="checkbox" name="menuitem"><br />#}
+{#Hot chocolate<input type="checkbox" name="menuitem"><br />#}
+{#Can sodas<input type="checkbox" name="menuitem"><br />#}
+{#Cold coffee<input type="checkbox" name="menuitem"><br />#}
+{#cold drinks<input type="checkbox" name="menuitem"><br />#}
+{#Fresh limes<input type="checkbox" name="menuitem"><br />#}
+    <form method="post" action="/add_food" >
+          <div id="foodhash">
+    <select name="fooz">
+                {% for item in food_items %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+        </select>
+
+    <input type="number" name="price" placeholder="Price per unit" required="required" value="5"/>
+          </div>
+        <input type="text" name="shop_id" style="display:none;" value="{{ by }}"  />
+        <br><input type="submit" class="button" value="Submit"/>
+
+</form>
+    <br /><button class="button" onclick="addMore()">Add item</button>
+
+<br />
+<h4>Any particular specialities? Please enter here</h4>
+    <form action="/add_food" method="post">
+        <input type="text" name="shop_id" style="display:none;" value="{{ by }}"   />
+        <input type="text" name="special" /><br /><br /><br />
+         <input type="text" name="price" placeholder="Price per unit" required="required" value="5"/>
+        <br><input type="submit" class="button" value="Submit special"/>
+</form>
+<script>
+    function addMore(){
+        document.getElementById('foodhash').innerHTML+= `<br>  <select name="foods">
+                {% for item in food_items %}
+                    <option value="{{ item }}">{{ item }}</option>
+                {% endfor %}
+        </select>
+
+    <input type="text" name="price" placeholder="Price per unit" required="required" value="5"/>`
+    }
+</script>
+</body>
+</html>

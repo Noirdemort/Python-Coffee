@@ -1,0 +1,81 @@
+<html>
+
+<head>
+<style type="text/css">
+  h1 {background-color:#808080;
+			font-weight:bold;
+			padding:35px;
+			color:white;
+			font-family: Comic Sans MS;}
+  .card {
+        padding: 2px 16px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    .container {
+        padding: 2px 16px;
+    }
+    #a{
+      text-align: center;
+    }
+    #b{
+      position: absolute;
+      top: 35px;
+      left: 1200px;
+    }
+    #c{
+      position: absolute;
+      top: 65px;
+      left: 1200px;
+    }
+</style>
+<head>
+<body>
+  <h1>Find me Coffee</h1>
+  <div id="b"><form action="index.html"><button>Logout</button></form></div>
+  <div id="c"><form method="post" action="/shopmenu.html" >
+      <input type="text"  name="shop_id"  style="display:none;" value="{{ shop_id }}"   />
+      <input type="submit" value="Edit Menu" /></form></div>
+  <br />
+  <h2>Hi, {{ name }}</h2>
+  <div id="a"><h4>These are the orders from customers.</h4></div><br />
+  <div class="card">
+ <div class="container">
+   {% for user in orders %}
+       <h3> {{ user }}:</h3>
+       <table border="1">
+       <tr>
+           <th> Food Item </th>
+           <th> Quantity </th>
+           <th> Item price </th>
+       </tr>
+       {% for i in orders[user] %}
+       <tr>
+           <td> {{ i[0] }} </td>
+           <td>{{ i[1] }} </td>
+           <td> {{ i[2] }} </td>
+       </tr>
+        {% endfor %}
+           <strong>Total Order cost :- {{ expense[user] }}</strong>
+       </table>
+
+    {% endfor %}
+
+ </div>
+</div>
+<br />
+<br />
+   <div id="a"><h4>These are the reviews from the customers.</h4></div><br />
+   <div class="card">
+  <div class="container">
+   {% for rec in reviews %}
+        <h3>{{ rec["username"] }} : {{  rec["rating"] }}</h3>
+   {% endfor %}
+      <strong>Avg reviews :- {{ avg_review }} </strong>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+
+<head>
+<style type="text/css">
+  h1 {background-color:#808080;
+			font-weight:bold;
+			padding:35px;
+			color:white;
+			font-family: Comic Sans MS;}
+  .button {background-color: #808080; color:white;
+    border-radius: 2px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 14px 40px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+  }
+  .button:hover {
+    background-color: #000000;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.abc {
+    background-color: #808080; color:white;
+    border-radius: 2px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 14px 40px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+.abc:hover{
+
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+#xyz{
+  position: absolute;
+  top:60px;
+  left:1200px;
+}
+
+</style>
+</head>
+
+<body>
+    <h1>Find me Coffee</h1>
+    <br />
+    <div id="xyz"><form action="/return_main_user" method="post">
+        <input type="text" name="username" style="display:none;" value={{ by }} />
+         <input type="submit" value="Go back" />
+    </form>
+    </div>
+    <div class="card">
+        {% for shop in shops %}
+            <h1>{{ shop['shop_name'] }}</h1>
+            <p class="title">{{ shop['address'] }}</p>
+            <p class="title">Open Time : {{ shop['opentime'] }} - {{ shop['closetime'] }} hrs</p>
+            <p class="title">Contact - {{ shop['mail'] }}</p>
+            <p class="rating">
+                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </p>
+            <p>
+                <form action="/order_food" method="post">
+                    <input type="text" name="shop_id" style="display:none;" value={{ shop['shop_id'] }}  />
+                    <input type="text" name="username" style="display:none;" value={{ by }}  />
+
+
+                    <input type="submit" value="Place order here" class="button"/>
+                </form></p>
+        {% endfor %}
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
